@@ -1,13 +1,10 @@
-package com.github.qumasso.lollipopbetterbees.events;
+package net.lollipopmc.lollipopbetterbees.events;
 
-import com.github.qumasso.lollipopbetterbees.config.PlaceholderApplier;
-import org.bukkit.Bukkit;
+import net.lollipopmc.lollipopbetterbees.config.PlaceholderApplier;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.data.type.Beehive;
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -22,25 +19,24 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 
 import java.util.List;
 
-public class EventManager implements Listener {
+public class EventListener implements Listener {
 
     private PlaceholderApplier applier;
 
-    public EventManager(PlaceholderApplier applier) {
+    public EventListener(PlaceholderApplier applier) {
         this.applier = applier;
     }
 
     @EventHandler
-    public void onEntityInteract(PlayerInteractEntityEvent event) {
-        if (!(event.getRightClicked() instanceof Bee)) return;
+    private void onEntityInteract(PlayerInteractEntityEvent event) {
+        if (!(event.getRightClicked() instanceof Bee bee)) return;
         if (event.getHand() != EquipmentSlot.OFF_HAND) return;
-        Bee bee = (Bee) event.getRightClicked();
         List<String> message = applier.applyPlaceholdersForBee(bee);
         for (String line : message) event.getPlayer().sendMessage(line);
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent e) {
+    private void onInteract(PlayerInteractEvent e) {
         if (e.getHand() == EquipmentSlot.OFF_HAND) return;
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (e.getClickedBlock().getState() instanceof org.bukkit.block.Beehive hive) {
@@ -60,7 +56,7 @@ public class EventManager implements Listener {
     }
 
     @EventHandler
-    public void onEntityPickup(EntityPickupItemEvent e) {
+    private void onEntityPickup(EntityPickupItemEvent e) {
         Item item = e.getItem();
         ItemStack stack = item.getItemStack();
         if (stack.getType() == Material.BEEHIVE) item.setItemStack(renameBeehive(stack));
@@ -68,7 +64,7 @@ public class EventManager implements Listener {
     }
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent e) {
+    private void onInventoryClick(InventoryClickEvent e) {
         if (e.getClick() == ClickType.CREATIVE) return;
         if (e.getCurrentItem().getType() == Material.BEEHIVE) {
             e.setCurrentItem(renameBeehive(e.getCurrentItem()));

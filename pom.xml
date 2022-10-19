@@ -19,6 +19,14 @@
             <artifactId>spigot</artifactId>
             <version>1.17.1-R0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <scope>system</scope>
+            <groupId>net.lollipopmc</groupId>
+            <artifactId>lollipop-libs</artifactId>
+            <version>r6-build43</version>
+            <type>jar</type>
+            <systemPath>C:\Users\Salavat\IdeaProjects\LollipopBetterBees\lollipoplibs-r6-build43.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,4 +1,6 @@
-main: com.github.qumasso.lollipopbetterbees.Main
+main: net.lollipopmc.lollipopbetterbees.BetterBeesPlugin
 name: LollipopBetterBees
-version: 1.0.0
+version: 1.0.1
 api-version: 1.17
+depend:
+  - LollipopLibs

@@ -1,4 +1,4 @@
-package com.github.qumasso.lollipopbetterbees.config;
+package net.lollipopmc.lollipopbetterbees.config;
 
 import org.bukkit.entity.Bee;
 
