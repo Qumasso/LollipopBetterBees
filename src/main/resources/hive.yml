@@ -1,7 +1,0 @@
-# Placeholders: ${beesAmount} - количество пчёл в улье, ${honeyLevel} - кол-во мёда в улье
-name: Улей с ${beesAmount} замечательными пчёлками ^_^
-lore:
-  - 'Уровень мёда: ${honeyLevel}'
-click-message:
-  - В этом улье ${beesAmount} пчёл
-  - Здесь находится ${honeyLevel} единиц нектара
