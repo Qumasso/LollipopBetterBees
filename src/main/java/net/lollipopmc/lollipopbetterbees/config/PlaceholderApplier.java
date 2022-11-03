@@ -1,23 +1,24 @@
 package net.lollipopmc.lollipopbetterbees.config;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Bee;
 
 import java.util.List;
 
 public interface PlaceholderApplier {
 
-    List<String> applyPlaceholdersForBee(Bee bee);
+    List<Component> applyPlaceholdersForBee(Bee bee);
 
-    String applyPlaceholdersForBeehiveName(int beesAmount, int honeyLevel);
+    Component applyPlaceholdersForBeehiveName(int beesAmount, int honeyLevel);
 
-    List<String> applyPlaceholdersForBeehiveLore(int beesAmount, int honeyLevel);
+    List<Component> applyPlaceholdersForBeehiveLore(int beesAmount, int honeyLevel);
 
-    List<String> applyPlaceholdersForBeehiveClickMessage(int beesAmount, int honeyLevel);
+    List<Component> applyPlaceholdersForBeehiveClickMessage(int beesAmount, int honeyLevel);
 
-    String applyPlaceholdersForNestName(int beesAmount, int honeyLevel);
+    Component applyPlaceholdersForNestName(int beesAmount, int honeyLevel);
 
-    List<String> applyPlaceholdersForNestLore(int beesAmount, int honeyLevel);
+    List<Component> applyPlaceholdersForNestLore(int beesAmount, int honeyLevel);
 
-    List<String> applyPlaceholdersForNestClickMessage(int beesAmount, int honeyLevel);
+    List<Component> applyPlaceholdersForNestClickMessage(int beesAmount, int honeyLevel);
 
 }

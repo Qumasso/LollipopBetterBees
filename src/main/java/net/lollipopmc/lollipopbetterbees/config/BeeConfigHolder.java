@@ -29,15 +29,15 @@ no-flower-message: 'не выбрала цветок'
 public class BeeConfigHolder extends ConfigHolder<BeeConfigHolder> {
 
     public List<String> messageIfHomeExists = Arrays.asList(
-            "#123aFCУлей/гнездо пчелы находится на X: ${x}, Y: ${y}, Z: ${z}",
-            "У неё ${stungMessage}, ${nectarMessage}",
-            "Она ${flowerMessage}"
+            "<#aa3fff>Улей/гнездо пчелы находится на X: <x>, Y: <y>, Z: <z>",
+            "У неё <stung-message>, <nectar-message>",
+            "Она <flower-message>"
     );
 
     public List<String> messageIfHomeDoesntExist = Arrays.asList(
             "Улей/гнездо уничтожен",
-            "У неё ${stungMessage}, ${nectarMessage}",
-            "Она ${flowerMessage}"
+            "У неё <stung-message>, <nectar-message>",
+            "Она <flower-message>"
     );
 
     public String hasStungMessage = "есть жало";

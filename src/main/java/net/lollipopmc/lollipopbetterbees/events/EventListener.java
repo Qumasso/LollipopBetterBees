@@ -1,8 +1,11 @@
 package net.lollipopmc.lollipopbetterbees.events;
 
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
 import net.lollipopmc.lollipopbetterbees.config.PlaceholderApplier;
 import org.bukkit.Material;
 import org.bukkit.block.data.type.Beehive;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Bee;
 import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
@@ -31,8 +34,10 @@ public class EventListener implements Listener {
     private void onEntityInteract(PlayerInteractEntityEvent event) {
         if (!(event.getRightClicked() instanceof Bee bee)) return;
         if (event.getHand() != EquipmentSlot.OFF_HAND) return;
-        List<String> message = applier.applyPlaceholdersForBee(bee);
-        for (String line : message) event.getPlayer().sendMessage(line);
+        List<Component> message = applier.applyPlaceholdersForBee(bee);
+        for (Component line : message) {
+            event.getPlayer().sendMessage(line);
+        }
     }
 
     @EventHandler
@@ -44,11 +49,11 @@ public class EventListener implements Listener {
             if (e.getClickedBlock().getBlockData() instanceof org.bukkit.block.data.type.Beehive data) {
                 int honeyLevel = data.getHoneyLevel();
                 if (e.getClickedBlock().getType() == Material.BEEHIVE) {
-                    List<String> message = applier.applyPlaceholdersForBeehiveClickMessage(beesAmount, honeyLevel);
+                    List<Component> message = applier.applyPlaceholdersForBeehiveClickMessage(beesAmount, honeyLevel);
                     message.forEach(s -> e.getPlayer().sendMessage(s));
                 }
                 else if (e.getClickedBlock().getType() == Material.BEE_NEST) {
-                    List<String> message = applier.applyPlaceholdersForNestClickMessage(beesAmount, honeyLevel);
+                    List<Component> message = applier.applyPlaceholdersForNestClickMessage(beesAmount, honeyLevel);
                     message.forEach(s -> e.getPlayer().sendMessage(s));
                 }
             }
@@ -86,8 +91,8 @@ public class EventListener implements Listener {
                         }
                     }
                 }
-                meta.setDisplayName(applier.applyPlaceholdersForBeehiveName(beesAmount, honeyLevel));
-                meta.setLore(applier.applyPlaceholdersForBeehiveLore(beesAmount, honeyLevel));
+                meta.displayName(applier.applyPlaceholdersForBeehiveName(beesAmount, honeyLevel));
+                meta.lore(applier.applyPlaceholdersForBeehiveLore(beesAmount, honeyLevel));
                 stack.setItemMeta(meta);
             }
         }
@@ -106,8 +111,8 @@ public class EventListener implements Listener {
                         }
                     }
                 }
-                meta.setDisplayName(applier.applyPlaceholdersForNestName(beesAmount, honeyLevel));
-                meta.setLore(applier.applyPlaceholdersForNestLore(beesAmount, honeyLevel));
+                meta.displayName(applier.applyPlaceholdersForNestName(beesAmount, honeyLevel));
+                meta.lore(applier.applyPlaceholdersForNestLore(beesAmount, honeyLevel));
                 stack.setItemMeta(meta);
             }
         }
